@@ -16,6 +16,14 @@ const awsmobile = {
                     "projectName": "Drafts-assumed-role/Admin/yuayu-Isengard",
                     "url": "https://sumerian.us-east-1.amazonaws.com/20180801/projects/Drafts-assumed-role%2FAdmin%2Fyuayu-Isengard/release/authTokens?sceneId=2244d08d3c5a4aa9981c20224ae582e9.scene"
                 }
+            },
+            "ardemo": {
+                "sceneConfig": {
+                    "sceneId": "4f553d5690704d64ad920296c5419e6a.scene",
+                    "region": "us-west-2",
+                    "projectName": "Lucky-Money",
+                    "url": "https://sumerian.us-west-2.amazonaws.com/20180801/projects/Lucky-Money/release/authTokens?sceneId=4f553d5690704d64ad920296c5419e6a.scene"
+                }
             }
         }
     },
