@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import { withAuthenticator } from 'aws-amplify-react';
+import { withAuthenticator, SumerianScene  } from 'aws-amplify-react';
 import Amplify, {XR as awsXR} from 'aws-amplify';
 import Aws_exports from './aws-exports';
 
