@@ -5,13 +5,18 @@
 1. clone this repo, `git clone git@github.com:JoeShi/sumerian-amplify-app.git`
 1. Checkout the **develop** branch, `git checkout develop`
 1. You will have to register an 8th Wall account to continue this demo
-1. Replace the `APP_KEY` with your own value in `src/index.html`
+1. Replace the `APP_KEY` with your own value in `public/index.html`, skip this step if you are working on Joe's account
     ```html
     <script async src="https://apps.8thwall.com/xrweb?appKey=APP_KEY"></script>
     ```
 1. commit `src/index.html` & push to **develop** branch
 1. check Amplify Console for the auto deployment. The CI/CD has been configured
 1. Visit the [https://develop.d100ntcyk3qzf1.amplifyapp.com/](https://develop.d100ntcyk3qzf1.amplifyapp.com/) to access the demo, you will have to register an account, if you have not registered yet
+
+Scan the following QR Code using your camera to access the demo.
+![QRCode](assets/qrcode.png)
+
+
 
 ## Launch the demo locally
 

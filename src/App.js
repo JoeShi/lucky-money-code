@@ -20,9 +20,9 @@ class App extends Component {
   }
 
   async loadAndStartScene() {
-    await awsXR.loadScene('ardemo', 'sumerian-scene-dom-id');
+    await awsXR.loadScene('demo', 'sumerian-scene-dom-id');
 
-    const world = awsXR.getSceneController('ardemo').sumerianRunner.world;
+    const world = awsXR.getSceneController('demo').sumerianRunner.world;
 
     window.sumerian.SystemBus.addListener('xrerror', (params) => {
       // Add error handling here
@@ -38,7 +38,7 @@ class App extends Component {
 
     window.XR8.Sumerian.addXRWebSystem(world);
 
-    awsXR.start('ardemo');
+    awsXR.start('demo');
   }
 };
 
