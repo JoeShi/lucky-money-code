@@ -100,8 +100,7 @@ sumerian steps
 
 4. input the behavior name and input the state name"listen"
 
-
-    ![](https://codevpc.s3.amazonaws.com/WechatIMG24.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG24.png)
 
 
 5. click add action
