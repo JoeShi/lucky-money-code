@@ -89,16 +89,67 @@ sumerian steps
 
 ### red pack and money action setting
 1. click the other red pack entity.
+
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG20.png)
+
+
 2. click "add component" button, choose "state machine"
+
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG21.png)
+
+
 3. click the "+"(plus) button 
+
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG22.png)
+
+
 4. input the behavior name and input the state name"listen"
+
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG23.png)
+
+
 5. click add action
+
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG24.png)
+
+
 6. input "listen" in the search area and choose the "listen" click "add"
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG25.png)
+
+
 7. click "add state"
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG26.png)
+
+
 8. drag the "state 1" rectangle to the right side
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG27.png)
+
 9. name the state "show"
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG28.png)
+
 10. click "Add action" and search show, click show
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG29.png)
+
 11. click the "listen" and drag a line to "show" state
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG30.png)
+
 12. do that again on 3 mmoney entities
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG31.png)
+
 ## config set
 1. click the eye button on the left console, the corresponding entity will be disappear.
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG32.png)
+
