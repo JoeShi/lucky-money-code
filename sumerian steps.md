@@ -50,39 +50,38 @@ sumerian steps
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG16.png)
 
 
 7. drag the "state 1" rectangle to the right side
 
-
 8. name the state "hide"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
-![](https://codevpc.s3.amazonaws.com/WechatIMG20.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG17.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG18.png)
 
 
 9. click "Add action" and search hide, click add
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG23.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG19.png)
 
 
 
 10. click "add action" and search emit, click add
 
+![](https://codevpc.s3.amazonaws.com/WechatIMG20.png)
 ![](https://codevpc.s3.amazonaws.com/WechatIMG21.png)
 
 
 
 11. inside the channel, input "showMoney"
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG18.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG23.png)
 
 
 12. click the "on click/tap entity" and drag a line to "hide" state
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG19.png)
 
 
 ### red pack and money action setting
