@@ -33,43 +33,59 @@ sumerian steps
 3. input the behavior name and input the state name"wait to be clicked"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG9.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG10.png)
 
 
 4. click add action
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG10.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
 
 
 5. input "click" in the search area and choose the "click/tap on entity"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
 
 
 6. click "add state"  
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
 
 
 7. drag the "state 1" rectangle to the right side
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
 8. name the state "hide"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
 
 
 9. click "Add action" and search hide, click add
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG16.png)
+
+
 10. click "add action" and search emit, click add
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG17.png)
+
+
 11. inside the channel, input "showMoney"
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG18.png)
+
+
 12. click the "on click/tap entity" and drag a line to "hide" state
+
+![](https://codevpc.s3.amazonaws.com/WechatIMG19.png)
+
+
 ### red pack and money action setting
 1. click the other red pack entity.
 2. click "add component" button, choose "state machine"
