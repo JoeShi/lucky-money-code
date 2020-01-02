@@ -29,19 +29,20 @@ sumerian steps
 2. click the "+"(plus) button 
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG10.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
 
 
 3. input the behavior name and input the state name"wait to be clicked"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
 
 
 4. click add action
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
 5. input "click" in the search area and choose the "click/tap on entity"
