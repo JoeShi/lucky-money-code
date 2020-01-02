@@ -143,4 +143,4 @@ sumerian steps
 ## config set
 1. click the eye button on the left console, the corresponding entity will be disappear.
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG27.png)
+    ![](https://codevpc.s3.amazonaws.com/WechatIMG27.png)
