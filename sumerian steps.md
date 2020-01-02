@@ -34,14 +34,10 @@ sumerian steps
 
 
 3. input the behavior name and input the state name"wait to be clicked"
-
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
-
-
 4. click add action
 
 
+![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
 ![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
