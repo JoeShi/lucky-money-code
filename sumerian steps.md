@@ -68,6 +68,7 @@ sumerian steps
 
 9. click "Add action" and search hide, click add
 
+
 ![](https://codevpc.s3.amazonaws.com/WechatIMG16.png)
 
 
