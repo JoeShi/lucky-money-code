@@ -64,17 +64,20 @@ sumerian steps
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG20.png)
 
 
 9. click "Add action" and search hide, click add
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG16.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG23.png)
+
 
 
 10. click "add action" and search emit, click add
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG17.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG21.png)
+
 
 
 11. inside the channel, input "showMoney"
@@ -90,44 +93,28 @@ sumerian steps
 ### red pack and money action setting
 1. click the other red pack entity.
 
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG20.png)
-
-
 2. click "add component" button, choose "state machine"
-
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG21.png)
 
 
 3. click the "+"(plus) button 
 
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG22.png)
-
-
 4. input the behavior name and input the state name"listen"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG23.png)
+    ![](https://codevpc.s3.amazonaws.com/WechatIMG24.png)
 
 
 5. click add action
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG24.png)
-
-
 6. input "listen" in the search area and choose the "listen" click "add"
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG25.png)
+    ![](https://codevpc.s3.amazonaws.com/WechatIMG25.png)
 
 
 7. click "add state"
 
 8. drag the "state 1" rectangle to the right side
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG26.png)
 
 9. name the state "show"
 
