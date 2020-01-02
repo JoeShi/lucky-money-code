@@ -3,26 +3,37 @@ sumerian steps
 1. create new project
     1. enter new project name"lucky money"
     2. click "create" button
+    ![](https://codevpc.s3.amazonaws.com/WechatIMG3.png)
 2. create new scene
     1. enter new scene name "red pack"
     2. click "create" button
+    ![](https://codevpc.s3.amazonaws.com/WechatIMG4.png)
 3. after loading for a few seconds, we came into suemrian console panel.
 
 ## sumerian entity create
 1. in the assets panel, click file button and choose the obj file we give you.
+![](https://codevpc.s3.amazonaws.com/WechatIMG5.png)
 2. duplicate the entity and you will see there are two entities listed.
 3. click the arrow button and drag and we will see two seperate entities.
-
+![](https://codevpc.s3.amazonaws.com/WechatIMG6.png)
 ## action config asset
 ### default red pack action setting
 1. click one red pack entity and click "add component" button, choose "state machine"
+![](https://codevpc.s3.amazonaws.com/WechatIMG7.png)
 2. click the "+"(plus) button 
+![](https://codevpc.s3.amazonaws.com/WechatIMG8.png)
 3. input the behavior name and input the state name"wait to be clicked"
+![](https://codevpc.s3.amazonaws.com/WechatIMG9.png)
 4. click add action
+![](https://codevpc.s3.amazonaws.com/WechatIMG10.png)
 5. input "click" in the search area and choose the "click/tap on entity"
+![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
 6. click "add state"  
+![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
 7. drag the "state 1" rectangle to the right side
+![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
 8. name the state "hide"
+![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 9. click "Add action" and search hide, click add
 10. click "add action" and search emit, click add
 11. inside the channel, input "showMoney"
