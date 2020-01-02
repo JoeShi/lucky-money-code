@@ -63,7 +63,7 @@ sumerian steps
 8. name the state "hide"
 
 
-![](hhttps://codevpc.s3.amazonaws.com/WechatIMG15.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
 
 
 9. click "Add action" and search hide, click add
