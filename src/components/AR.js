@@ -30,6 +30,8 @@ class AR extends React.Component {
       if (loadingStatus && loadingStatus.parentNode) {
         loadingStatus.parentNode.removeChild(loadingStatus);
       }
+
+      window.document.getElementById('sumerian').style.position = "inherit";
     });
 
     window.XR8.Sumerian.addXRWebSystem(world);
