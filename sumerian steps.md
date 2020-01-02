@@ -22,28 +22,50 @@ sumerian steps
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG7.png)
+
+
 2. click the "+"(plus) button 
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG8.png)
+
+
 3. input the behavior name and input the state name"wait to be clicked"
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG9.png)
+
+
 4. click add action
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG10.png)
+
+
 5. input "click" in the search area and choose the "click/tap on entity"
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG11.png)
+
+
 6. click "add state"  
+
+
 ![](https://codevpc.s3.amazonaws.com/WechatIMG12.png)
+
+
 7. drag the "state 1" rectangle to the right side
+
+
 ![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
+
+
 8. name the state "hide"
+
+
 ![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
+
+
 9. click "Add action" and search hide, click add
 10. click "add action" and search emit, click add
 11. inside the channel, input "showMoney"
