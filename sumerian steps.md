@@ -38,25 +38,21 @@ sumerian steps
 
 
 ![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
-![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
 5. input "click" in the search area and choose the "click/tap on entity"
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
 6. click "add state"  
 
 
-![](https://codevpc.s3.amazonaws.com/WechatIMG13.png)
+![](https://codevpc.s3.amazonaws.com/WechatIMG15.png)
 
 
 7. drag the "state 1" rectangle to the right side
-
-
-![](https://codevpc.s3.amazonaws.com/WechatIMG14.png)
 
 
 8. name the state "hide"
