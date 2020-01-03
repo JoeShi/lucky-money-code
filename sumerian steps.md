@@ -7,12 +7,13 @@ sumerian steps
     2. enter new scene name "red pack" and click "create" button
     ![](assets/WechatIMG6_1.png)
 3. after loading for a few seconds, we came into suemrian console panel.
-
+![](assets/WechatIMG7_1.png)
 ## sumerian entity create
 1. in the assets panel, click file button and choose the template file we offered.
 ![](assets/WechatIMG5.png)
+2. after loading you can see the entities in template we offered.
+![](assets/WechatIMG8_1.png)
 3. click the arrow button and drag to move the entities.
-![](assets/WechatIMG6.png)
 ## action config asset
 ### default red pack action setting
 1. click the "box" entity and click "add component" button, choose "state machine"
