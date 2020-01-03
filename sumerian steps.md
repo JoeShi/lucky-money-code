@@ -1,24 +1,21 @@
 sumerian steps
 ## suemrian basic config
-1. create new project
-    1. enter new project name"lucky money"
-    2. click "create" button
-    ![](assets/WechatIMG3.png)
-2. create new scene
-    1. enter new scene name "red pack"
-    2. click "create" button
+1. create new scene
+    1. under "Create scene from template" choose "Augmented Reality" 
+    ![](assets/WechatIMG4.png)
+    
+    2. enter new scene name "red pack" and click "create" button
     ![](assets/WechatIMG4.png)
 3. after loading for a few seconds, we came into suemrian console panel.
 
 ## sumerian entity create
-1. in the assets panel, click file button and choose the obj file we give you.
+1. in the assets panel, click file button and choose the template file we offered.
 ![](assets/WechatIMG5.png)
-2. duplicate the entity and you will see there are two entities listed.
-3. click the arrow button and drag and we will see two seperate entities.
+3. click the arrow button and drag to move the entities.
 ![](assets/WechatIMG6.png)
 ## action config asset
 ### default red pack action setting
-1. click one red pack entity and click "add component" button, choose "state machine"
+1. click the "box" entity and click "add component" button, choose "state machine"
 
 
 ![](assets/WechatIMG7.png)
@@ -85,7 +82,7 @@ sumerian steps
 
 
 ### red pack and money action setting
-1. click the other red pack entity.
+1. click the "box with money" entity.
 
 2. click "add component" button, choose "state machine"
 
