@@ -9,7 +9,7 @@ const awsmobile = {
     "oauth": {},
     "XR": {
         "scenes": {
-            "LuckeyMonkeyAR": {
+            "demo": {
                 "sceneConfig": {
                     "sceneId": "aecd5ba977214a3aa1cea6d7375d3ad0.scene",
                     "region": "us-west-2",

@@ -1,0 +1,15 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-lucky-money-dev-230915-authRole",
+            "UnauthRoleArn": "arn:aws:iam::674582831535:role/amplify-lucky-money-dev-230915-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::674582831535:role/amplify-lucky-money-dev-230915-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-lucky-money-dev-230915-deployment",
+            "UnauthRoleName": "amplify-lucky-money-dev-230915-unauthRole",
+            "StackName": "amplify-lucky-money-dev-230915",
+            "StackId": "arn:aws:cloudformation:us-west-2:674582831535:stack/amplify-lucky-money-dev-230915/0b241f40-2984-11ea-b55c-0629bfb37232",
+            "AmplifyAppId": "d3s1nkuwjdmiu1"
+        }
+    }
+}
