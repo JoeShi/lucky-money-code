@@ -2,10 +2,10 @@ sumerian steps
 ## suemrian basic config
 1. create new scene
     1. under "Create scene from template" choose "Augmented Reality" 
-    ![](assets/WechatIMG4.png)
+    ![](assets/WechatIMG4_1.png)
     
     2. enter new scene name "red pack" and click "create" button
-    ![](assets/WechatIMG4.png)
+    ![](assets/WechatIMG6_1.png)
 3. after loading for a few seconds, we came into suemrian console panel.
 
 ## sumerian entity create
