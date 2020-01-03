@@ -1,15 +1,33 @@
 import React from 'react'
 import { withAuthenticator } from 'aws-amplify-react'
 import {XR as awsXR} from 'aws-amplify'
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import { ArrowBack } from '@material-ui/icons'
 
 class AR extends React.Component {
   render() {
     return (
-      <div id="sumerian-scene-dom-id" style={ {height: '100vh'} }>
-        <p id="loading-status">Loading...</p>
+      <div>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton edge="start" color="inherit" aria-label="menu" onClick={this.moveToMain.bind(this)}>
+              <ArrowBack />
+            </IconButton>
+            <Typography variant="h6" >
+            Find Lucky Money
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <div id="sumerian-scene-dom-id" style={ {height: '100vh'} }>
+            <p id="loading-status">Loading...</p>
+          </div>
       </div>
     );
   }
+
+  moveToMain() {
+    window.location.href = "/";
+  };
 
   componentDidMount() {
     this.loadAndStartScene();
