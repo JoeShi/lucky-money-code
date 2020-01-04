@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "luckymoney6e11270a_identitypool_6e11270a",
+    "identityPoolName": "luckymoneyf2f00b99_identitypool_f2f00b99",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "luckym6e11270a",
-    "userPoolName": "luckymoney6e11270a_userpool_6e11270a",
+    "resourceNameTruncated": "luckymf2f00b99",
+    "userPoolName": "luckymoneyf2f00b99_userpool_f2f00b99",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,9 +28,9 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "luckym6e11270a_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "luckymf2f00b99_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "luckymoney6e11270a",
+    "resourceName": "luckymoneyf2f00b99",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
