@@ -69,6 +69,11 @@ function App() {
     </div>
   );
 
+  const runAR = () => event => {
+    window.location.href = "/ar";
+  };
+
+
   return (
     <Router>
       <div>
@@ -80,7 +85,7 @@ function App() {
             <Typography variant="h6" className={classes.title}>
             Lunar New Year
             </Typography>
-            <Button color="inherit" component={Link} to="/ar">AR</Button>
+            <Button color="inherit" onClick={runAR()}>AR</Button>
           </Toolbar>
         </AppBar>
         <SwipeableDrawer open={state.left} onClose={toggleDrawer('left', false)} onOpen={toggleDrawer('left', true)}>
