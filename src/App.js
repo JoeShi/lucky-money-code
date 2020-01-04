@@ -70,7 +70,7 @@ function App() {
   );
 
   const runAR = () => event => {
-    window.location.href = "/ar";
+    window.location.href = "/ar/";
   };
 
 

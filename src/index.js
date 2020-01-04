@@ -13,7 +13,7 @@ const routing = (
   <Router>
     <div>
       <Route exact path='/' component={App} />
-      <Route path='/ar' component={AR} />
+      <Route path='/ar/' component={AR} />
       <Route path='/ranking' component={Ranking} />
       <Route path='/sharing' component={Sharing} />
     </div>
