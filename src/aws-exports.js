@@ -11,7 +11,7 @@ const awsmobile = {
     "aws_mobile_analytics_app_region": "us-west-2",
     "XR": {
         "scenes": {
-            "demo": {
+            "LuckeyMoneyAR": {
                 "sceneConfig": {
                     "sceneId": "aecd5ba977214a3aa1cea6d7375d3ad0.scene",
                     "region": "us-west-2",
