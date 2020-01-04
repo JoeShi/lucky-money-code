@@ -34,9 +34,9 @@ class AR extends React.Component {
   }
 
   async loadAndStartScene() {
-    await awsXR.loadScene('demo', 'sumerian-scene-dom-id');
+    await awsXR.loadScene('LuckeyMonkeyAR', 'sumerian-scene-dom-id');
 
-    const world = awsXR.getSceneController('demo').sumerianRunner.world;
+    const world = awsXR.getSceneController('LuckeyMonkeyAR').sumerianRunner.world;
 
     window.sumerian.SystemBus.addListener('xrerror', (params) => {
       // Add error handling here
@@ -54,7 +54,7 @@ class AR extends React.Component {
 
     window.XR8.Sumerian.addXRWebSystem(world);
 
-    awsXR.start('demo');
+    awsXR.start('LuckeyMonkeyAR');
   }
 };
 
