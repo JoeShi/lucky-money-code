@@ -1,37 +1,20 @@
 {
 	"auth": {
-		"luckymoney6e11270a": {
+		"luckymoneyf2f00b99": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
 		}
 	},
-	"xr": {
-		"demo": {
-			"service": "Sumerian",
+	"analytics": {
+		"luckymoney": {
+			"service": "Pinpoint",
 			"providerPlugin": "awscloudformation"
 		}
 	},
-	"api": {
-		"luckymoney": {
-			"service": "AppSync",
-			"providerPlugin": "awscloudformation",
-			"output": {
-				"authConfig": {
-					"additionalAuthenticationProviders": [],
-					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authluckymoney6e11270a"
-						}
-					}
-				}
-			}
-		}
-	},
-	"analytics": {
-		"luckymoneyanalytics": {
-			"service": "Pinpoint",
+	"xr": {
+		"demo": {
+			"service": "Sumerian",
 			"providerPlugin": "awscloudformation"
 		}
 	}

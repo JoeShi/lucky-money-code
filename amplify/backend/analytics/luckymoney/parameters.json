@@ -1,0 +1,20 @@
+{
+    "appName": "luckymoney",
+    "roleName": "pinpointLambdaRole9389ff03",
+    "cloudWatchPolicyName": "cloudWatchPolicy9389ff03",
+    "pinpointPolicyName": "pinpointPolicy9389ff03",
+    "authPolicyName": "pinpoint_amplify_9389ff03",
+    "unauthPolicyName": "pinpoint_amplify_9389ff03",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
