@@ -1,11 +1,9 @@
 import React from 'react';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react';
-import AR from './components/AR';
-import Ranking from './components/Ranking';
-import Sharing from './components/Sharing';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import {  Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, Button, List, ListItem, 
   ListItemIcon, SwipeableDrawer, Divider} from '@material-ui/core'
@@ -73,16 +71,8 @@ function App() {
     window.location.href = "/ar/";
   };
 
-  const Header = () => {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
 
   return (
-    <Router>
       <div>
       <AppBar position="static">
           <Toolbar>
@@ -98,23 +88,7 @@ function App() {
         <SwipeableDrawer open={state.left} onClose={toggleDrawer('left', false)} onOpen={toggleDrawer('left', true)}>
           {sideList('left')}
         </SwipeableDrawer>
-        <Switch>
-          <Route exact path="/">
-            <Ranking />
-          </Route>
-          <Route path="/ranking">
-            <Ranking />
-          </Route>
-          <Route path="/sharing">
-            <Sharing />
-          </Route>
-          <Route path="/ar">
-            <AR />
-          </Route>
-          
-        </Switch>
       </div>
-    </Router>
   );
 };
 
