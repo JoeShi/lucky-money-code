@@ -6,6 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
+import { withAuthenticator } from 'aws-amplify-react';
+
+
 import { useTheme } from '@material-ui/core/styles';
 
 
@@ -104,4 +107,4 @@ function Sharing() {
   )
 }
 
-export default Sharing
+export default withAuthenticator(Sharing)

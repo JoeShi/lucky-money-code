@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react';
+import AR from './components/AR';
+import Ranking from './components/Ranking';
+import Sharing from './components/Sharing';
 
-
-import {  Link } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, withRouter, Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, Button, List, ListItem, 
   ListItemIcon, SwipeableDrawer, Divider} from '@material-ui/core'
@@ -30,7 +32,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function App() {
+const exclusionArray = [
+  '/ar',
+  '/ar/',
+]
+
+const App=({location}) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -71,8 +78,8 @@ function App() {
     window.location.href = "/ar/";
   };
 
-
-  return (
+  const Header = () => {
+    return (
       <div>
       <AppBar position="static">
           <Toolbar>
@@ -89,7 +96,31 @@ function App() {
           {sideList('left')}
         </SwipeableDrawer>
       </div>
-  );
+    )
+  }
+
+  return (
+      <div>
+        {exclusionArray.indexOf(location.pathname) < 0 && <Header/>}
+        <Switch>
+          
+          <Route exact path="/">
+            <Ranking />
+          </Route>
+          <Route path="/ranking">
+            <Ranking />
+          </Route>
+          <Route path="/sharing">
+            <Sharing />
+          </Route>
+          <Route path="/ar">
+            <AR />
+          </Route>
+          
+        </Switch>
+      </div>
+
+  )
 };
 
-export default withAuthenticator(App, { includeGreetings: false });
+export default withAuthenticator(withRouter(App), { includeGreetings: false });
