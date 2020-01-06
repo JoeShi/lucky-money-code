@@ -73,6 +73,13 @@ function App() {
     window.location.href = "/ar/";
   };
 
+  const Header = () => {
+    return (
+      <div>
+        
+      </div>
+    )
+  }
 
   return (
     <Router>
@@ -95,12 +102,16 @@ function App() {
           <Route exact path="/">
             <Ranking />
           </Route>
-          <Route path="/ar">
-            <AR />
+          <Route path="/ranking">
+            <Ranking />
           </Route>
           <Route path="/sharing">
             <Sharing />
           </Route>
+          <Route path="/ar">
+            <AR />
+          </Route>
+          
         </Switch>
       </div>
     </Router>

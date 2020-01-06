@@ -12,10 +12,11 @@ import * as serviceWorker from './serviceWorker';
 const routing = (
   <Router>
     <div>
+      
       <Route exact path='/' component={App} />
       <Route path='/ar/' component={AR} />
-      <Route path='/ranking' component={Ranking} />
-      <Route path='/sharing' component={Sharing} />
+      <Route path='/ranking' component={App} />
+      <Route path='/sharing' component={App} />
     </div>
   </Router>
 )
