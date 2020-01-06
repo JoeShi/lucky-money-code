@@ -2,20 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'typeface-roboto';
 import './index.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import App from './App';
-import Ranking from './components/Ranking';
 import AR from './components/AR';
+import Ranking from './components/Ranking';
 import Sharing from './components/Sharing';
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
   <Router>
     <div>
-      <Route exact path='/' component={App} />
-      <Route path='/ar/' component={AR} />
-      <Route path='/ranking' component={Ranking} />
-      <Route path='/sharing' component={Sharing} />
+        <Route path="/ar">
+            <AR />
+        </Route>
+        <App />
+        <Switch>
+          <Route exact path="/">
+            <Ranking />
+          </Route>
+          <Route path="/ranking">
+            <Ranking />
+          </Route>
+          <Route path="/sharing">
+            <Sharing />
+          </Route>
+          
+          
+        </Switch>
+        
     </div>
   </Router>
 )
