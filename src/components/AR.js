@@ -4,14 +4,6 @@ import {XR as awsXR} from 'aws-amplify'
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import { ArrowBack } from '@material-ui/icons'
 
-const doShare = function() {
-  console.log("doShare clicked...!");
-}
-
-const doClose = function() {
-  console.log("doClose clicked...!");
-}
-
 class AR extends React.Component {
   render() {
     return (
@@ -61,6 +53,16 @@ class AR extends React.Component {
     });
 
     window.XR8.Sumerian.addXRWebSystem(world);
+
+    window.sumerian.SystemBus.addListener('doshare', () => {
+      // Add error handling here
+      console.log ('DoShare is clicked');
+    });
+
+    window.sumerian.SystemBus.addListener('doclose', () => {
+      // Add error handling here
+      console.log ('DoClose is clicked');
+    });
 
     awsXR.start('LuckyMoneyAR');
   }
