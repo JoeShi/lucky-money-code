@@ -21,6 +21,12 @@
                     "sceneId": "aecd5ba977214a3aa1cea6d7375d3ad0.scene",
                     "region": "us-west-2",
                     "projectName": "Lucky-Money"
+                },
+                "LuckyMoneyAR": {
+                    "url": "https://sumerian.us-west-2.amazonaws.com/20180801/projects/Lucky-Money/release/authTokens?sceneId=aecd5ba977214a3aa1cea6d7375d3ad0.scene",
+                    "sceneId": "aecd5ba977214a3aa1cea6d7375d3ad0.scene",
+                    "region": "us-west-2",
+                    "projectName": "Lucky-Money"
                 }
             }
         }
