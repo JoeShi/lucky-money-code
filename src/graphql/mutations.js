@@ -36,7 +36,8 @@ export const openPrivateRedPacket = `mutation OpenPrivateRedPacket($ProductType:
   openPrivateRedPacket(ProductType: $ProductType, UserEmail: $UserEmail) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -53,7 +54,6 @@ export const openSharedRedPacket = `mutation OpenSharedRedPacket(
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -64,7 +64,6 @@ export const shareRedPacket = `mutation ShareRedPacket($ProductType: String!, $U
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -126,7 +125,6 @@ export const createSharedRedPacket = `mutation CreateSharedRedPacket(
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -140,7 +138,6 @@ export const updateSharedRedPacket = `mutation UpdateSharedRedPacket(
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -154,7 +151,6 @@ export const deleteSharedRedPacket = `mutation DeleteSharedRedPacket(
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -167,7 +163,8 @@ export const createUser = `mutation CreateUser(
   createUser(input: $input, condition: $condition) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -178,7 +175,8 @@ export const updateUser = `mutation UpdateUser(
   updateUser(input: $input, condition: $condition) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -189,7 +187,8 @@ export const deleteUser = `mutation DeleteUser(
   deleteUser(input: $input, condition: $condition) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;

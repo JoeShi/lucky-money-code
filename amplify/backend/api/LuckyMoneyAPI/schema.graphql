@@ -1,5 +1,5 @@
 type Advertisement @model @key(fields: ["ProductType"]){
-  ProductType: Int!
+  ProductType: String!
   ADContent: String
   ImageUrl: String
   ProductDescription: String
@@ -11,17 +11,17 @@ type Advertisement @model @key(fields: ["ProductType"]){
 
 type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]){
   UserEmail: String!
-  ProductType: Int!
+  ProductType: String!
   RPShareDetails: String
-  ScannedFlag: Boolean
   SharedDoneFlag: Boolean
   UpdateTime: String
 }
 
-type User @model @key(fields: ["UserEmail"]){
+type User @model @key(fields: ["UserEmail"]) @key(name: "ByGroupBalance", fields: ["Group", "Balance"], queryField: "usersByBalance"){
   UserEmail: String!
   Balance: Float
-  hasSharedRP: Boolean
+  HasSharedRP: Boolean
+	Group: String!
 }
 
 type Mutation {
@@ -35,4 +35,10 @@ type Query {
   getBalanceRanking(Limit: Int): [User]
   getFriends(UserEmail: String!): [User]
   getSharedRedPacketsByUser(UserEmail: String!): [SharedRedPacket]
+}
+
+input CreateUserInput {
+  UserEmail: String!
+  Group: String! = "AKO2020"
+  Balance: Int = 0
 }

@@ -45,7 +45,6 @@ export const onCreateSharedRedPacket = `subscription OnCreateSharedRedPacket {
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -56,7 +55,6 @@ export const onUpdateSharedRedPacket = `subscription OnUpdateSharedRedPacket {
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -67,7 +65,6 @@ export const onDeleteSharedRedPacket = `subscription OnDeleteSharedRedPacket {
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -77,7 +74,8 @@ export const onCreateUser = `subscription OnCreateUser {
   onCreateUser {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -85,7 +83,8 @@ export const onUpdateUser = `subscription OnUpdateUser {
   onUpdateUser {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -93,7 +92,8 @@ export const onDeleteUser = `subscription OnDeleteUser {
   onDeleteUser {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;

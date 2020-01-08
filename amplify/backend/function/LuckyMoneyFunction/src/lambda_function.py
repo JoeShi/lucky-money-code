@@ -13,13 +13,12 @@ import time
 
 ###########################################################################################################
 advertisementMap={}
-# USER_POOL_ID = os.environ['COGNITO_USER_POOL_ID']
-USER_POOL_ID = 'us-west-2_fMW8fwYIz'
+USER_POOL_ID = os.environ['COGNITO_USER_POOL_ID']
 REGION_NAME = os.environ['REGION']
 
-TABLE_ADVERTISEMENT = 'Advertisement-nyui63vqhbhebk26th2osurrxe-dev'
-TABLE_USER_RANKING = 'User-nyui63vqhbhebk26th2osurrxe-dev'
-TABLE_SHARED_RED_PACKET = 'SharedRedPacket-nyui63vqhbhebk26th2osurrxe-dev'
+TABLE_ADVERTISEMENT = os.environ['TABLE_ADVERTISEMENT']
+TABLE_USER_RANKING = os.environ['TABLE_USER_RANKING']
+TABLE_SHARED_RED_PACKET = os.environ['TABLE_SHARED_RED_PACKET']
 
 cognitoClient = boto3.client('cognito-idp')
 dynamodbClient = boto3.resource("dynamodb", region_name=REGION_NAME)
@@ -46,7 +45,7 @@ def getRandomList(sum,number):
 def userIsRanking(userEmail):
     print("----in method---- userIsRanking")
     
-    table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     
     response = table.get_item(
         Key={
@@ -70,7 +69,7 @@ def init():
     
     #1.read all advertisements into one dict
     # table = dynamodbClient.Table('Advertisement')
-    table = dynamodbClient.Table(os.environ['TABLE_ADVERTISEMENT'])
+    table = dynamodbClient.Table(TABLE_ADVERTISEMENT)
     
     ddbResponse = table.scan()
     
@@ -91,12 +90,12 @@ def handleGetFriends(event, context):
     
     print("----in method---- handleGetFriends")
     
-    #1. read all the users in the userRanking DDB table 
+    #1. read all the users in the User DDB table 
     resultUsers=[]
     
     ddbEmaliList=[]
     # table = dynamodbClient.Table('UserRanking')
-    table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     
     ddbResponse = table.scan()
     
@@ -131,8 +130,8 @@ def handleGetFriends(event, context):
                 user={}
                 user["UserEmail"] = item["Attributes"][0]['Value']
                 user["Balance"] = 0
-                user["hasSharedRP"] = 'false'
-                user["City"] = "Chicago"
+                user["HasSharedRP"] = 'false'
+                user["Group"] = "AKO2020"
                 resultUsers.append(user)
     
     #4.sort the result
@@ -149,7 +148,7 @@ def handleOpenSharedRedPacket(event, context):
     
     #1.check for invalid operations.
     # table = dynamodbClient.Table('SharedRedPacket')
-    table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
 
     response = table.get_item(
         Key={
@@ -164,7 +163,7 @@ def handleOpenSharedRedPacket(event, context):
     if not 'Item' in response: 
         raise Exception('not a shared red Packet !')
     
-    if response['Item']['SharedDoneFlag']=='true':
+    if response['Item']['SharedDoneFlag'] == True:
         raise Exception('all the shared red Packets have been opened !')
     
     if not 'RPShareDetails' in response['Item']:
@@ -182,13 +181,13 @@ def handleOpenSharedRedPacket(event, context):
     print(tempRPShareDetails) 
     
     tempRPShareDetails = tempRPShareDetails.replace('None', event['arguments']['FriendUserEmail'], 1)
-    newSharedDoneFlag='false'
+    newSharedDoneFlag= False
     if not tempRPShareDetails.find("None")>=0:
-        newSharedDoneFlag='true'
+        newSharedDoneFlag= True
     
     #3.update record
     # table = dynamodbClient.Table('SharedRedPacket')
-    table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     
     response = table.update_item(
         
@@ -218,7 +217,7 @@ def handleOpenSharedRedPacket(event, context):
             findUnopenedRedPacket='true'
             break
         
-    #5.update user and friend in userRanking table
+    #5.update user and friend in User table
     redPacketDict = json.loads(tempRPShareDetails)
     newIncome=0
     
@@ -233,7 +232,7 @@ def handleOpenSharedRedPacket(event, context):
     print(newIncome)
     
     # table = dynamodbClient.Table('UserRanking')
-    table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     
     #6.update the friend
     if userIsRanking(event['arguments']['FriendUserEmail']) =='false':
@@ -241,8 +240,8 @@ def handleOpenSharedRedPacket(event, context):
            Item={
                 'UserEmail': event['arguments']['FriendUserEmail'],
                 'Balance': decimal.Decimal(newIncome),
-                'hasSharedRP':'false',
-                'City':'Chicago'
+                'HasSharedRP':'false',
+                'Group':'AKO2020'
             }
         )
     else:
@@ -257,6 +256,7 @@ def handleOpenSharedRedPacket(event, context):
             },
             ReturnValues="UPDATED_NEW"
         )
+        print(response)
     
     #7.update the email user
     response = table.update_item(
@@ -264,7 +264,7 @@ def handleOpenSharedRedPacket(event, context):
         Key={
             'UserEmail': event['arguments']['UserEmail']
         },
-        UpdateExpression="set hasSharedRP = :newHasSharedRP",
+        UpdateExpression="set HasSharedRP = :newHasSharedRP",
         ExpressionAttributeValues={
             ':newHasSharedRP': findUnopenedRedPacket
         },
@@ -273,8 +273,8 @@ def handleOpenSharedRedPacket(event, context):
     
     #8.query and return ShareRedPacket record
     # table = dynamodbClient.Table('SharedRedPacket')
-    table = dynamodbClient.Table('TABLE_SHARED_RED_PACKET')
-
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
+    
     response = table.get_item(
         Key={
             'ProductType': event['arguments']['ProductType'],
@@ -294,7 +294,7 @@ def handleGetSharedRedPacketsByUser(event, context):
     print("----in method---- getSharedRedPacketsByUser")
     
     # table = dynamodbClient.Table('SharedRedPacket')
-    table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     
     response = table.query(
         KeyConditionExpression=Key('UserEmail').eq(event['arguments']['UserEmail'])
@@ -308,7 +308,7 @@ def handleShareRedPacket(event, context):
     
     #1.check whether current user has already performed this operation
     # table = dynamodbClient.Table('SharedRedPacket')
-    table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
 
 
     response = table.get_item(
@@ -357,10 +357,9 @@ def handleShareRedPacket(event, context):
     #4.update the existing ShareRedPacket record to store the redPacket items
     
     # table = dynamodbClient.Table('SharedRedPacket')
-table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     
     response = table.update_item(
-        
         Key={
             'UserEmail': event['arguments']['UserEmail'],
             'ProductType': event['arguments']['ProductType']
@@ -376,7 +375,7 @@ table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
     #5.add sharing bonus into current user's account, enable the sharing flag
     
     # table = dynamodbClient.Table('UserRanking')
-table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     bonus = advertisementMap[event['arguments']['ProductType']]["RPShareBonus"]
 
     response = table.update_item(
@@ -384,7 +383,7 @@ table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
         Key={
             'UserEmail': event['arguments']['UserEmail']
         },
-        UpdateExpression="set Balance = Balance + :addBalance, hasSharedRP = :newHasSharedRP",
+        UpdateExpression="set Balance = Balance + :addBalance, HasSharedRP = :newHasSharedRP",
         ExpressionAttributeValues={
             ':addBalance': decimal.Decimal(bonus),
             ':newHasSharedRP': "true"
@@ -398,7 +397,7 @@ table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
     
     #6.read and return
     # table = dynamodbClient.Table('SharedRedPacket')
-table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     response = table.get_item(
         Key={
             'ProductType': event['arguments']['ProductType'],
@@ -414,7 +413,7 @@ def handleGetUser(event, context):
     print("----in method---- getUser")
     
     # table = dynamodbClient.Table('UserRanking')
-table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     
     response = table.get_item(
         Key={
@@ -432,8 +431,8 @@ table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
         user={}
         user["UserEmail"] = event['arguments']['UserEmail']
         user["Balance"] = 0
-        user["hasSharedRP"] = 'false'
-        user["City"] = "Chicago"
+        user["HasSharedRP"] = 'false'
+        user["Group"] = "AKO2020"
         return user
         
 
@@ -446,7 +445,7 @@ def handleGetBalanceRanking(event, context):
     resultUsers=[]
     tempUsers=[]
     # table = dynamodbClient.Table('UserRanking')
-table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     ddbResponse = table.scan()
     
     for item in ddbResponse['Items']:
@@ -476,7 +475,7 @@ def handleOpenPrivateRedPacket(event, context):
     
     #1.check whether current user has performed such operation
     # table = dynamodbClient.Table('SharedRedPacket')
-table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     response = table.get_item(
         Key={
             'ProductType': event['arguments']['ProductType'],
@@ -489,13 +488,13 @@ table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
     
     #2 create new recored in the SharedRedPacket to mark it.
     # table = dynamodbClient.Table('SharedRedPacket')
-table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
+    table = dynamodbClient.Table(TABLE_SHARED_RED_PACKET)
     
     response = table.put_item(
        Item={
             'UserEmail': event['arguments']['UserEmail'],
             'ProductType': event['arguments']['ProductType'],
-            'SharedDoneFlag':'false',
+            'SharedDoneFlag': False,
             'UpdateTime': decimal.Decimal(time.time())
         }
     )
@@ -507,7 +506,7 @@ table = dynamodbClient.Table(os.environ['TABLE_SHARED_RED_PACKET'])
     print(money)
     
     # table = dynamodbClient.Table('UserRanking')
-table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+    table = dynamodbClient.Table(TABLE_USER_RANKING)
     
     response = table.get_item(
         Key={
@@ -518,7 +517,7 @@ table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
     #4.create or update user in the UserRanking table
     if 'Item' in response: 
         # table = dynamodbClient.Table('UserRanking')
-table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
+        table = dynamodbClient.Table(TABLE_USER_RANKING)
         response = table.update_item(
             
             Key={
@@ -535,8 +534,8 @@ table = dynamodbClient.Table(os.environ['TABLE_USER_RANKING'])
            Item={
                 'UserEmail': event['arguments']['UserEmail'],
                 'Balance': money,
-                'hasSharedRP':'false',
-                'City':'Chicago'
+                'HasSharedRP':'false',
+                'Group':'AKO2020'
             }
         )
     
@@ -575,21 +574,21 @@ def lambda_handler(event, context):
 
     init()
     
-    if event['field'] == "getAdvertisement":
+    if event['fieldName'] == "getAdvertisement":
         return handleGetAdvertisement(event, context)
-    elif event['field'] == "getBalanceRanking":
+    elif event['fieldName'] == "getBalanceRanking":
         return handleGetBalanceRanking(event, context)
-    elif event['field'] == "getFriends":
+    elif event['fieldName'] == "getFriends":
         return handleGetFriends(event, context)
-    elif event['field'] == "getUser":
+    elif event['fieldName'] == "getUser":
         return handleGetUser(event, context)
-    elif event['field'] == "openPrivateRedPacket":
+    elif event['fieldName'] == "openPrivateRedPacket":
         return handleOpenPrivateRedPacket(event, context)
-    elif event['field'] == "shareRedPacket":
+    elif event['fieldName'] == "shareRedPacket":
         return handleShareRedPacket(event, context)
-    elif event['field'] == "openSharedRedPacket":
+    elif event['fieldName'] == "openSharedRedPacket":
         return handleOpenSharedRedPacket(event, context)
-    elif event['field'] == "getSharedRedPacketsByUser":
+    elif event['fieldName'] == "getSharedRedPacketsByUser":
         return handleGetSharedRedPacketsByUser(event, context)
     else:
         raise Exception('Unsupported operation !')
@@ -597,5 +596,6 @@ def lambda_handler(event, context):
         
 #############################################################################################    
 #############################################################################################    
+#############################################################################################
 #############################################################################################
 #############################################################################################

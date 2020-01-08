@@ -9,6 +9,18 @@
 			"Type": "String",
 			"Description": "The id of an existing User Pool to connect. If this is changed, a user pool will not be created for you.",
 			"Default": "NONE"
+		},
+		"tableSharedRedPacket": {
+			"Type": "String",
+			"Default": "NONE"
+		},
+		"tableUser": {
+			"Type": "String",
+			"Default": "NONE"
+		},
+		"tableAdvertisement": {
+			"Type": "String",
+			"Default": "NONE"
 		}
 	},
 	"Conditions": {
@@ -58,6 +70,15 @@
 						},
 						"COGNITO_USER_POOL_ID": {
 							"Ref": "AuthCognitoUserPoolId"
+						},
+						"TABLE_ADVERTISEMENT": {
+							"Ref": "tableAdvertisement"
+						},
+						"TABLE_SHARED_RED_PACKET": {
+							"Ref": "tableSharedRedPacket"
+						},
+						"TABLE_USER_RANKING": {
+							"Ref": "tableUser"
 						}
 					}
 				},
@@ -71,7 +92,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-lucky-money-dev-225512-deployment",
-					"S3Key": "amplify-builds/LuckyMoneyFunction-66384c35306161317944-build.zip"
+					"S3Key": "amplify-builds/LuckyMoneyFunction-79306155537162346376-build.zip"
 				}
 			}
 		},

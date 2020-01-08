@@ -8,10 +8,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 import { withAuthenticator } from 'aws-amplify-react';
 
-
-import { useTheme } from '@material-ui/core/styles';
-
-
 const useStyles = makeStyles({
   card: {
     maxWidth: 345,
@@ -34,7 +30,6 @@ const useStyles = makeStyles({
 
 function RedPacketCard(props) {
 
-  
   const [open, setOpen] = React.useState(false);
 
   const handleClose = () => {

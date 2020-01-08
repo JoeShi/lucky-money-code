@@ -5,7 +5,8 @@ export const getBalanceRanking = `query GetBalanceRanking($Limit: Int) {
   getBalanceRanking(Limit: $Limit) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -13,7 +14,8 @@ export const getFriends = `query GetFriends($UserEmail: String!) {
   getFriends(UserEmail: $UserEmail) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -22,13 +24,12 @@ export const getSharedRedPacketsByUser = `query GetSharedRedPacketsByUser($UserE
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
 }
 `;
-export const getAdvertisement = `query GetAdvertisement($ProductType: Int!) {
+export const getAdvertisement = `query GetAdvertisement($ProductType: String!) {
   getAdvertisement(ProductType: $ProductType) {
     ProductType
     ADContent
@@ -42,7 +43,7 @@ export const getAdvertisement = `query GetAdvertisement($ProductType: Int!) {
 }
 `;
 export const listAdvertisements = `query ListAdvertisements(
-  $ProductType: Int
+  $ProductType: String
   $filter: ModelAdvertisementFilterInput
   $limit: Int
   $nextToken: String
@@ -69,12 +70,11 @@ export const listAdvertisements = `query ListAdvertisements(
   }
 }
 `;
-export const getSharedRedPacket = `query GetSharedRedPacket($UserEmail: String!, $ProductType: Int!) {
+export const getSharedRedPacket = `query GetSharedRedPacket($UserEmail: String!, $ProductType: String!) {
   getSharedRedPacket(UserEmail: $UserEmail, ProductType: $ProductType) {
     UserEmail
     ProductType
     RPShareDetails
-    ScannedFlag
     SharedDoneFlag
     UpdateTime
   }
@@ -82,7 +82,7 @@ export const getSharedRedPacket = `query GetSharedRedPacket($UserEmail: String!,
 `;
 export const listSharedRedPackets = `query ListSharedRedPackets(
   $UserEmail: String
-  $ProductType: ModelIntKeyConditionInput
+  $ProductType: ModelStringKeyConditionInput
   $filter: ModelSharedRedPacketFilterInput
   $limit: Int
   $nextToken: String
@@ -100,7 +100,6 @@ export const listSharedRedPackets = `query ListSharedRedPackets(
       UserEmail
       ProductType
       RPShareDetails
-      ScannedFlag
       SharedDoneFlag
       UpdateTime
     }
@@ -112,7 +111,8 @@ export const getUser = `query GetUser($UserEmail: String!) {
   getUser(UserEmail: $UserEmail) {
     UserEmail
     Balance
-    hasSharedRP
+    HasSharedRP
+    Group
   }
 }
 `;
@@ -133,7 +133,34 @@ export const listUsers = `query ListUsers(
     items {
       UserEmail
       Balance
-      hasSharedRP
+      HasSharedRP
+      Group
+    }
+    nextToken
+  }
+}
+`;
+export const usersByBalance = `query UsersByBalance(
+  $Group: String
+  $Balance: ModelFloatKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  usersByBalance(
+    Group: $Group
+    Balance: $Balance
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      UserEmail
+      Balance
+      HasSharedRP
+      Group
     }
     nextToken
   }
