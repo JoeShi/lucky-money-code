@@ -16,6 +16,35 @@
 		"demo": {
 			"service": "Sumerian",
 			"providerPlugin": "awscloudformation"
+		},
+		"LuckyMoneyAR": {
+			"service": "Sumerian",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {
+		"LuckyMoneyAPI": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authluckymoneyf2f00b99"
+						}
+					}
+				}
+			}
+		}
+	},
+	"function": {
+		"LuckyMoneyFunction": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": []
 		}
 	}
 }

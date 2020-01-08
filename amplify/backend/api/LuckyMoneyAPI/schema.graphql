@@ -1,0 +1,38 @@
+type Advertisement @model @key(fields: ["ProductType"]){
+  ProductType: Int!
+  ADContent: String
+  ImageUrl: String
+  ProductDescription: String
+  RPMaxSharedNum: Int
+  RPMoneyInside: Float
+  RPMoneyToShare: Float
+  RPShareBonus: Float
+}
+
+type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]){
+  UserEmail: String!
+  ProductType: Int!
+  RPShareDetails: String
+  ScannedFlag: Boolean
+  SharedDoneFlag: Boolean
+  UpdateTime: String
+}
+
+type User @model @key(fields: ["UserEmail"]){
+  UserEmail: String!
+  Balance: Float
+  hasSharedRP: Boolean
+}
+
+type Mutation {
+  addAdvertisement(ADContent: String, ImageUrl: String, ProductDescription: String, ProductType: String!, RPMaxSharedNum: Int, RPMoneyInside: Float, RPMoneyToShare: Float, RPShareBonus: Float): Advertisement!
+  openPrivateRedPacket(ProductType: String!, UserEmail: String!): User! @function(name: "LuckyMoneyFunction-${env}")
+  openSharedRedPacket(FriendUserEmail: String, ProductType: String!, UserEmail: String!): SharedRedPacket! @function(name: "LuckyMoneyFunction-${env}")
+  shareRedPacket(ProductType: String!, UserEmail: String!): SharedRedPacket! @function(name: "LuckyMoneyFunction-${env}")
+}
+
+type Query {
+  getBalanceRanking(Limit: Int): [User]
+  getFriends(UserEmail: String!): [User]
+  getSharedRedPacketsByUser(UserEmail: String!): [SharedRedPacket]
+}

@@ -1,0 +1,9 @@
+{
+    "permissions": {},
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authluckymoneyf2f00b99",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

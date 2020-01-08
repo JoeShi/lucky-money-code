@@ -3,6 +3,7 @@ import { withAuthenticator } from 'aws-amplify-react';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',

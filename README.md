@@ -1,5 +1,31 @@
 # Sumerian Demo
 
+[ ] Ads 需要有create方法
+[ ] User 如果用了 sort key 那么 get 函数的输入就必须有 sort key了，这不科学. 所以获取自己的
+[ ] 获取 User Ranking 的时候必须有一个hash key, 这个hash key就用city字段吧
+[ ] Function CloudFormation 如何获得 Cognito User Pool ID
+[ ] schema add @function 
+
+创建 **Advertisement** Item
+```
+mutation {
+  createAdvertisement(input: {
+    ProductType: 1
+    ADContent: "hello"
+    ImageUrl: "none"
+    ProductDescription: "none"
+    RPMaxSharedNum: 5
+    RPMoneyInside: 2.6
+    RPMoneyToShare: 2
+    RPShareBonus: 1
+  }) {
+    ProductType
+    ADContent
+  }
+}
+```
+
+
 ## Run the demo and debug on Mobile
 
 1. clone this repo, `git clone git@github.com:JoeShi/sumerian-amplify-app.git`

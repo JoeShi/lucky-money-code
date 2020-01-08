@@ -1,0 +1,45 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Advertisement {
+  ADContent: String
+  ImageUrl: String
+  ProductDescription: String
+  ProductType: Int!
+  RPMaxSharedNum: Int
+  RPMoneyInside: Float
+  RPMoneyToShare: Float
+  RPShareBonus: Float
+}
+
+type Mutation {
+  addAdvertisement(ADContent: String, ImageUrl: String, ProductDescription: String, ProductType: String!, RPMaxSharedNum: Int, RPMoneyInside: Float, RPMoneyToShare: Float, RPShareBonus: Float): Advertisement!
+  openPrivateRedPacket(ProductType: String!, UserEmail: String!): User!
+  openSharedRedPacket(FriendUserEmail: String, ProductType: String!, UserEmail: String!): SharedRedPacket!
+  shareRedPacket(ProductType: String!, UserEmail: String!): SharedRedPacket!
+}
+
+type Query {
+  getAdvertisement(ProductType: String!): Advertisement!
+  getBalanceRanking(Limit: Int): [User]
+  getFriends(UserEmail: String!): [User]
+  getSharedRedPacketsByUser(UserEmail: String!): [SharedRedPacket]
+  getUser(UserEmail: String!): User
+}
+
+type SharedRedPacket {
+  ProductType: Int!
+  RPShareDetails: String
+  ScannedFlag: Boolean
+  SharedDoneFlag: Boolean
+  UpdateTime: String
+  UserEmail: String!
+}
+
+type User {
+  Balance: Float
+  UserEmail: String!
+  hasSharedRP: Boolean
+}

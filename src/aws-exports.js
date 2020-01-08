@@ -21,7 +21,7 @@ const awsmobile = {
             }
         }
     },
-    "aws_appsync_graphqlEndpoint": "https://lgvif4sta5btpay4rti4hawdxe.appsync-api.us-west-2.amazonaws.com/graphql",
+    "aws_appsync_graphqlEndpoint": "https://ehvzslw5mnanbayxkmh5j4dwa4.appsync-api.us-west-2.amazonaws.com/graphql",
     "aws_appsync_region": "us-west-2",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS"
 };
