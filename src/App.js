@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react';
+import {Auth} from 'aws-amplify'
 import AR from './components/AR';
 import Ranking from './components/Ranking';
 import Sharing from './components/Sharing';
@@ -37,6 +38,10 @@ const exclusionArray = [
   '/ar/',
 ]
 
+const signout = () => {
+  Auth.signOut()
+}
+
 const App=({location}) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -68,7 +73,7 @@ const App=({location}) => {
         <Divider />
         <ListItem>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-          Sign Out
+          <Link to="/" onClick={signout}>Sign out</Link>
         </ListItem>
       </List>
     </div>
