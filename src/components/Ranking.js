@@ -33,7 +33,7 @@ class Ranking extends React.Component {
     const currentUser = await Auth.currentUserInfo()
     const userRes = await API.graphql(graphqlOperation(queries.getUser, {UserEmail: currentUser.attributes.email}))
     if (userRes.data.getUser) {
-      myBalance = userRes.data.getUser.Balance
+      const myBalance = userRes.data.getUser.Balance
       this.setState({balance: myBalance})
     }
 
