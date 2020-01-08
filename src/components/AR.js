@@ -31,6 +31,12 @@ class AR extends React.Component {
 
   componentDidMount() {
     this.loadAndStartScene();
+
+    var receiveMessage = function(event)
+    {
+      alert(event.data);
+    }
+    window.addEventListener("message", receiveMessage, false);
   }
 
   async loadAndStartScene() {
