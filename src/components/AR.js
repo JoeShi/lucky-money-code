@@ -34,7 +34,17 @@ class AR extends React.Component {
 
     var receiveMessage = function(event)
     {
-      alert(event.data);
+      switch (event.data){
+        case "sumerian-open-packet":
+          alert('open')
+          break;
+        case "sumerian-close-packet":
+          alert('close')
+          break;
+        case "sumerian-share-packet":
+          alert('share');
+          break;
+      }
     }
     window.addEventListener("message", receiveMessage, false);
   }
