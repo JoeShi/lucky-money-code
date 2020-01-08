@@ -3,8 +3,17 @@ import { withAuthenticator } from 'aws-amplify-react'
 import {XR as awsXR} from 'aws-amplify'
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import { ArrowBack } from '@material-ui/icons'
+import * as mutations from '../graphql/mutations';
+import {API, graphqlOperation} from 'aws-amplify';
 
 class AR extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      user: {}
+    }
+  }
+
   render() {
     return (
       <div>
@@ -36,14 +45,34 @@ class AR extends React.Component {
     {
       switch (event.data){
         case "sumerian-open-packet":
-          alert('open')
+          API.graphql(graphqlOperation(mutations.openPrivateRedPacket, 
+            {
+              UserEmail: "214706257@qq.com", // TODO: need to be variable
+              ProductType: "1"
+            })).then(luckyMoney => {
+              console.log(luckyMoney)
+              // TODO: Add a notice message to info user how much they earned.
+            }).catch(err => {
+              console.error(err)
+              // 有可能已经扫描过了
+            })
           break;
         case "sumerian-close-packet":
-          alert('close')
+          window.location.href = "/"; // 
           break;
         case "sumerian-share-packet":
-          alert('share');
+          API.graphql(graphqlOperation(mutations.shareRedPacket, {
+            UserEmail: "214706257@qq.com", // TODO: need to be variable
+            ProductType: "1"
+          })).then(luckyMoney => {
+            console.log(luckyMoney)
+            window.location.href = "/";
+          }).catch(err => {
+            console.error(err)
+          })
           break;
+        default:
+          console.log(event.data)
       }
     }
     window.addEventListener("message", receiveMessage, false);

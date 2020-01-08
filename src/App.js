@@ -6,7 +6,7 @@ import AR from './components/AR';
 import Ranking from './components/Ranking';
 import Sharing from './components/Sharing';
 
-import { Route, BrowserRouter as Router, Switch, withRouter, Link } from "react-router-dom";
+import { Route, Switch, withRouter, Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, Typography, IconButton, Button, List, ListItem, 
   ListItemIcon, SwipeableDrawer, Divider} from '@material-ui/core'

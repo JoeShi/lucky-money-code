@@ -5,8 +5,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-
 import { withAuthenticator } from 'aws-amplify-react';
+
+import * as queries from '../graphql/queries';
+import * as mutations from '../graphql/mutations';
+import {API, graphqlOperation, Auth} from 'aws-amplify';
 
 const useStyles = makeStyles({
   card: {
@@ -27,28 +30,37 @@ const useStyles = makeStyles({
   }
 });
 
-
 function RedPacketCard(props) {
-
+  const classes = useStyles()
   const [open, setOpen] = React.useState(false);
-
+  const luckyMoney = props
+  
   const handleClose = () => {
     setOpen(false);
   };
-  const openLuckyMoney = async (luckyMoney) => {
-    // Invoke API to openLuckyMoney and get random balance
-    console.log(luckyMoney);
+  
+  const openLuckyMoney = async () => {
+    // try catch here
+
+    const currentUser = await Auth.currentUserInfo()
+    console.log(props)
+
     setOpen(true);
+    
+    const shardRedPacketRes = await API.graphql(graphqlOperation(mutations.openSharedRedPacket, {
+      ProductType: props.adsId, 
+      UserEmail: props.owner, 
+      FriendUserEmail: currentUser.attributes.email
+    }))
+
+    console.log(shardRedPacketRes)
+    
   }
-
-
-  const luckyMoney = props
-  const classes = useStyles()
 
   return (
     <div>
     <Card className={classes.card}>
-      <CardActionArea onClick={() => openLuckyMoney(luckyMoney)}>
+      <CardActionArea onClick={() => openLuckyMoney()}>
         <CardMedia
           className={classes.media}
           image="/images/red_envolope.jpg"
@@ -93,13 +105,46 @@ function RedPacketCard(props) {
   )
 }
 
-function Sharing() {
-  return (
-    <Grid container justify={"center"}>
-      <RedPacketCard owner="qiaoshi@amazon.com" adsId="111"/>
-      <RedPacketCard owner="tiangeli@amazon.com" adsId="222"/>
-    </Grid>
-  )
+class Sharing extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      luckyMoneys: []
+    }
+  }
+
+  componentDidMount() {
+    this.init().then()
+  }
+
+  async init() {
+    const luckyMoneysRes =  await API.graphql(graphqlOperation(queries.redPacketsByProductType, 
+      { 
+        ProductType: "1", 
+        filter: { 
+          SharedDoneFlag: { eq: false }
+        }
+      }))
+
+    const luckyMoneys = luckyMoneysRes.data.redPacketsByProductType.items
+    if (luckyMoneys) {
+      this.setState({luckyMoneys: luckyMoneys})
+    }
+  }
+
+  render() {
+    return (
+      <Grid container justify={"center"}>
+        {this.state.luckyMoneys.map(luckyMoney => {
+          const keyId = `shared-lucky-money-id-${luckyMoney.UserEmail}`;
+          return (
+            <RedPacketCard key={keyId} owner={luckyMoney.UserEmail} adsId={luckyMoney.ProductType} />
+          )
+        })}
+      </Grid>
+    )
+  }
 }
 
 export default withAuthenticator(Sharing)
