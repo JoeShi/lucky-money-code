@@ -1,20 +1,8 @@
 import React from 'react'
 import { withAuthenticator } from 'aws-amplify-react';
-import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import * as queries from '../graphql/queries';
-import * as mutations from '../graphql/mutations';
-import * as subscriptions from '../graphql/subscriptions';
-import Amplify, {API, graphqlOperation, Auth} from 'aws-amplify';
-import { InsertInvitation } from '@material-ui/icons';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+import {API, graphqlOperation, Auth} from 'aws-amplify';
 
 class Ranking extends React.Component {
   constructor() {
@@ -26,7 +14,7 @@ class Ranking extends React.Component {
   }
 
   componentDidMount() {
-    this.init()
+    this.init().then()
   }
 
   async init() {
@@ -34,11 +22,11 @@ class Ranking extends React.Component {
     const userRes = await API.graphql(graphqlOperation(queries.getUser, {UserEmail: currentUser.attributes.email}))
     if (userRes.data.getUser) {
       const myBalance = userRes.data.getUser.Balance
-      this.setState({balance: myBalance})
+      this.setState({balance: myBalance/100})
     }
 
-    const listUsersRes = await API.graphql(graphqlOperation(queries.listUsers, {limit: 10}))
-    const topUsers = listUsersRes.data.listUsers.items
+    const listUsersRes = await API.graphql(graphqlOperation(queries.usersByBalance, {Group: "AKO2020", sortDirection: "DESC", limit: 10}))
+    const topUsers = listUsersRes.data.usersByBalance.items
     if (topUsers) {
       this.setState({users: topUsers})
     }
@@ -54,7 +42,7 @@ class Ranking extends React.Component {
           return (
             <ListItem key={user.UserEmail} button>
               <ListItemText id={labelId} primary={`${user.UserEmail}`} />
-              <ListItemText edge="end" primary={`$ ${user.Balance}`} />
+              <ListItemText edge="end" primary={`$ ${user.Balance/100}`} />
             </ListItem>
           );
         })}

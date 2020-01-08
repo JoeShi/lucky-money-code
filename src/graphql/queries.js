@@ -140,6 +140,31 @@ export const listUsers = `query ListUsers(
   }
 }
 `;
+export const redPacketsByProductType = `query RedPacketsByProductType(
+  $ProductType: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelSharedRedPacketFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  redPacketsByProductType(
+    ProductType: $ProductType
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      UserEmail
+      ProductType
+      RPShareDetails
+      SharedDoneFlag
+      UpdateTime
+    }
+    nextToken
+  }
+}
+`;
 export const usersByBalance = `query UsersByBalance(
   $Group: String
   $Balance: ModelFloatKeyConditionInput

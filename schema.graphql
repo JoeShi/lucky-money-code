@@ -9,7 +9,7 @@
   RPShareBonus: Float
 }
 
-type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]) {
+type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]) @key(name: "ByProductType", fields: ["ProductType"], queryField: "redPacketsByProductType") {
   UserEmail: String!
   ProductType: String!
   RPShareDetails: String
