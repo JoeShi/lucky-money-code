@@ -1,0 +1,27 @@
+{
+    "permissions": {},
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authluckymoneyf2f00b99",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "tableSharedRedPacket": {
+        "Fn::GetAtt": [
+            "apiLuckyMoneyAPI",
+            "Outputs.GraphQLAPIIdOutput"
+        ]
+    },
+    "tableUser:": {
+        "Fn::GetAtt": [
+            "apiLuckyMoneyAPI",
+            "Outputs.GraphQLAPIIdOutput"
+        ]
+    },
+    "tableAdvertisement:": {
+        "Fn::GetAtt": [
+            "apiLuckyMoneyAPI",
+            "Outputs.GraphQLAPIIdOutput"
+        ]
+    }
+}
