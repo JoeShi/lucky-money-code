@@ -70,7 +70,7 @@ class AR extends React.Component {
               ProductType: "1"
             })).then(user => {
               console.log(user)
-              let toastText = "Success ! Balance:" + user.Balance
+              let toastText = "Success! You earn $" + user.data.openPrivateRedPacket.Balance / 100
               self.setState({toastText: toastText})
               showToast()
               // TODO: Add a notice message to info user how much they earned.
@@ -93,9 +93,15 @@ class AR extends React.Component {
           })).then(luckyMoney => {
             console.log("shared a lucky money")
             // TODO: Add a notice message to info user how much they earned for extra
+            let toastText = "You share a lucky money"
+            self.setState({toastText: toastText})
+            showToast()
             window.location.href = "/";
           }).catch(err => {
             // TODO: Add an error message to show
+            let toastText = "You have already shared it !"
+            self.setState({toastText: toastText})
+            showToast()
             console.error(err)
           })
           break;
