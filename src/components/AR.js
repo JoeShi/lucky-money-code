@@ -5,12 +5,14 @@ import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import { ArrowBack } from '@material-ui/icons'
 import * as mutations from '../graphql/mutations';
 import {API, graphqlOperation} from 'aws-amplify';
+import './Toast.css'
 
 class AR extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: {}
+      user: {},
+      toastText: "aaaaaa"
     }
   }
 
@@ -30,9 +32,12 @@ class AR extends React.Component {
         <div id="sumerian-scene-dom-id" style={ {height: '100vh'} }>
             <p id="loading-status">Loading...</p>
           </div>
+        <div id="snackbar">{this.state.toastText}</div>
       </div>
     );
   }
+
+  
 
   moveToMain() {
     window.location.href = "/";
@@ -45,20 +50,36 @@ class AR extends React.Component {
     Auth.currentUserInfo().then(user => {
       this.setState({user: user})
     })
-    
+
+    var showToast = function(){
+      let script = document.createElement('script')
+      script.setAttribute("id","snackbar-script")
+      if (document.getElementById('snackbar-script') != null) document.getElementById('snackbar-script').remove();
+      script.text = 'var x = document.getElementById("snackbar");x.className = "show";setTimeout(function() {x.className = x.className.replace("show", "");}, 3000);'
+      document.getElementById('snackbar').appendChild(script)
+    }
+
     var receiveMessage = function(event)
     {
       switch (event.data){
         case "sumerian-open-packet":
+          
           API.graphql(graphqlOperation(mutations.openPrivateRedPacket, 
             {
               UserEmail: self.state.user.attributes.email,
               ProductType: "1"
-            })).then(luckyMoney => {
-              console.log(luckyMoney)
+            })).then(user => {
+              console.log(user)
+              let toastText = "Success ! Balance:" + user.Balance
+              self.setState({toastText: toastText})
+              showToast()
               // TODO: Add a notice message to info user how much they earned.
             }).catch(err => {
               console.error(err)
+              let toastText = "You have aleady opened this red packet !"
+              self.setState({toastText: toastText})
+              showToast()
+              
               // TODO: add an error message
             })
           break;
