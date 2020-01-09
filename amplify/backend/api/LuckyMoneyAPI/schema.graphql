@@ -1,4 +1,4 @@
-type Advertisement @model @key(fields: ["ProductType"]){
+type Advertisement @model(subscriptions: null) @key(fields: ["ProductType"]){
   ProductType: String!
   ADContent: String
   ImageUrl: String
@@ -9,7 +9,7 @@ type Advertisement @model @key(fields: ["ProductType"]){
   RPShareBonus: Float
 }
 
-type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]) @key(name: "ByProductType", fields: ["ProductType"], queryField: "redPacketsByProductType") {
+type SharedRedPacket @model(mutations: null) @key(fields: ["UserEmail", "ProductType"]) @key(name: "ByProductType", fields: ["ProductType"], queryField: "redPacketsByProductType") {
   UserEmail: String!
   ProductType: String!
   RPShareDetails: String
@@ -17,7 +17,7 @@ type SharedRedPacket @model @key(fields: ["UserEmail", "ProductType"]) @key(name
   UpdateTime: String
 }
 
-type User @model @key(fields: ["UserEmail"]) @key(name: "ByGroupBalance", fields: ["Group", "Balance"], queryField: "usersByBalance"){
+type User @model(mutations: null) @key(fields: ["UserEmail"]) @key(name: "ByGroupBalance", fields: ["Group", "Balance"], queryField: "usersByBalance"){
   UserEmail: String!
   Balance: Float
   HasSharedRP: Boolean
@@ -25,16 +25,9 @@ type User @model @key(fields: ["UserEmail"]) @key(name: "ByGroupBalance", fields
 }
 
 type Mutation {
-  addAdvertisement(ADContent: String, ImageUrl: String, ProductDescription: String, ProductType: String!, RPMaxSharedNum: Int, RPMoneyInside: Float, RPMoneyToShare: Float, RPShareBonus: Float): Advertisement!
   openPrivateRedPacket(ProductType: String!, UserEmail: String!): User! @function(name: "LuckyMoneyFunction-${env}")
   openSharedRedPacket(FriendUserEmail: String, ProductType: String!, UserEmail: String!): SharedRedPacket! @function(name: "LuckyMoneyFunction-${env}")
   shareRedPacket(ProductType: String!, UserEmail: String!): SharedRedPacket! @function(name: "LuckyMoneyFunction-${env}")
-}
-
-type Query {
-  getBalanceRanking(Limit: Int): [User]
-  getFriends(UserEmail: String!): [User]
-  getSharedRedPacketsByUser(UserEmail: String!): [SharedRedPacket]
 }
 
 input CreateUserInput {

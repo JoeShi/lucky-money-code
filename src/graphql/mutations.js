@@ -1,37 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const addAdvertisement = `mutation AddAdvertisement(
-  $ADContent: String
-  $ImageUrl: String
-  $ProductDescription: String
-  $ProductType: String!
-  $RPMaxSharedNum: Int
-  $RPMoneyInside: Float
-  $RPMoneyToShare: Float
-  $RPShareBonus: Float
-) {
-  addAdvertisement(
-    ADContent: $ADContent
-    ImageUrl: $ImageUrl
-    ProductDescription: $ProductDescription
-    ProductType: $ProductType
-    RPMaxSharedNum: $RPMaxSharedNum
-    RPMoneyInside: $RPMoneyInside
-    RPMoneyToShare: $RPMoneyToShare
-    RPShareBonus: $RPShareBonus
-  ) {
-    ProductType
-    ADContent
-    ImageUrl
-    ProductDescription
-    RPMaxSharedNum
-    RPMoneyInside
-    RPMoneyToShare
-    RPShareBonus
-  }
-}
-`;
 export const openPrivateRedPacket = `mutation OpenPrivateRedPacket($ProductType: String!, $UserEmail: String!) {
   openPrivateRedPacket(ProductType: $ProductType, UserEmail: $UserEmail) {
     UserEmail
@@ -114,81 +83,6 @@ export const deleteAdvertisement = `mutation DeleteAdvertisement(
     RPMoneyInside
     RPMoneyToShare
     RPShareBonus
-  }
-}
-`;
-export const createSharedRedPacket = `mutation CreateSharedRedPacket(
-  $input: CreateSharedRedPacketInput!
-  $condition: ModelSharedRedPacketConditionInput
-) {
-  createSharedRedPacket(input: $input, condition: $condition) {
-    UserEmail
-    ProductType
-    RPShareDetails
-    SharedDoneFlag
-    UpdateTime
-  }
-}
-`;
-export const updateSharedRedPacket = `mutation UpdateSharedRedPacket(
-  $input: UpdateSharedRedPacketInput!
-  $condition: ModelSharedRedPacketConditionInput
-) {
-  updateSharedRedPacket(input: $input, condition: $condition) {
-    UserEmail
-    ProductType
-    RPShareDetails
-    SharedDoneFlag
-    UpdateTime
-  }
-}
-`;
-export const deleteSharedRedPacket = `mutation DeleteSharedRedPacket(
-  $input: DeleteSharedRedPacketInput!
-  $condition: ModelSharedRedPacketConditionInput
-) {
-  deleteSharedRedPacket(input: $input, condition: $condition) {
-    UserEmail
-    ProductType
-    RPShareDetails
-    SharedDoneFlag
-    UpdateTime
-  }
-}
-`;
-export const createUser = `mutation CreateUser(
-  $input: CreateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  createUser(input: $input, condition: $condition) {
-    UserEmail
-    Balance
-    HasSharedRP
-    Group
-  }
-}
-`;
-export const updateUser = `mutation UpdateUser(
-  $input: UpdateUserInput!
-  $condition: ModelUserConditionInput
-) {
-  updateUser(input: $input, condition: $condition) {
-    UserEmail
-    Balance
-    HasSharedRP
-    Group
-  }
-}
-`;
-export const deleteUser = `mutation DeleteUser(
-  $input: DeleteUserInput!
-  $condition: ModelUserConditionInput
-) {
-  deleteUser(input: $input, condition: $condition) {
-    UserEmail
-    Balance
-    HasSharedRP
-    Group
   }
 }
 `;
