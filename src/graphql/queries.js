@@ -1,34 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBalanceRanking = `query GetBalanceRanking($Limit: Int) {
-  getBalanceRanking(Limit: $Limit) {
-    UserEmail
-    Balance
-    HasSharedRP
-    Group
-  }
-}
-`;
-export const getFriends = `query GetFriends($UserEmail: String!) {
-  getFriends(UserEmail: $UserEmail) {
-    UserEmail
-    Balance
-    HasSharedRP
-    Group
-  }
-}
-`;
-export const getSharedRedPacketsByUser = `query GetSharedRedPacketsByUser($UserEmail: String!) {
-  getSharedRedPacketsByUser(UserEmail: $UserEmail) {
-    UserEmail
-    ProductType
-    RPShareDetails
-    SharedDoneFlag
-    UpdateTime
-  }
-}
-`;
 export const getAdvertisement = `query GetAdvertisement($ProductType: String!) {
   getAdvertisement(ProductType: $ProductType) {
     ProductType

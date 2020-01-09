@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 function RedPacketCard(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false);
+  const [luckyMoneyValue, setLuckyMoneyValue] = React.useState(false);
   const luckyMoney = props
   
   const handleClose = () => {
@@ -41,20 +42,24 @@ function RedPacketCard(props) {
   
   const openLuckyMoney = async () => {
     // try catch here
-
     const currentUser = await Auth.currentUserInfo()
-    console.log(props)
-
-    setOpen(true);
-    
-    const shardRedPacketRes = await API.graphql(graphqlOperation(mutations.openSharedRedPacket, {
-      ProductType: props.adsId, 
-      UserEmail: props.owner, 
-      FriendUserEmail: currentUser.attributes.email
-    }))
-
-    console.log(shardRedPacketRes)
-    
+    try {
+      const shardRedPacketRes = await API.graphql(graphqlOperation(mutations.openSharedRedPacket, {
+        ProductType: props.adsId, 
+        UserEmail: props.owner, 
+        FriendUserEmail: currentUser.attributes.email
+      }))
+      console.log(shardRedPacketRes.data.openSharedRedPacket)
+      const details = JSON.parse(shardRedPacketRes.data.openSharedRedPacket.RPShareDetails)
+      console.log(details)
+      const detail = details.redPackets.find(detail => detail.friend === currentUser.attributes.email)
+      // set the display value
+      setLuckyMoneyValue(detail.money)
+      // set popup modal open
+      setOpen(true)
+    } catch (err) {
+      console.error(err)
+    }    
   }
 
   return (
@@ -94,7 +99,7 @@ function RedPacketCard(props) {
         </DialogContentText>
         <DialogContentText style={{color:'#efbc3c',fontSize: '3rem'}} className={classes.modalText}>
           {/* Random Balance write in here */}
-          $ 1.0
+          $ {luckyMoneyValue/100}
         </DialogContentText>
       </DialogContent>
       <DialogActions onClick={handleClose} style={{height: '120px'}}>

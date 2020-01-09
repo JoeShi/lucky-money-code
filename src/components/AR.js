@@ -1,6 +1,6 @@
 import React from 'react'
 import { withAuthenticator } from 'aws-amplify-react'
-import {XR as awsXR} from 'aws-amplify'
+import {XR as awsXR, Auth} from 'aws-amplify'
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
 import { ArrowBack } from '@material-ui/icons'
 import * as mutations from '../graphql/mutations';
@@ -39,22 +39,27 @@ class AR extends React.Component {
   };
 
   componentDidMount() {
+    const self = this
     this.loadAndStartScene();
-
+    
+    Auth.currentUserInfo().then(user => {
+      this.setState({user: user})
+    })
+    
     var receiveMessage = function(event)
     {
       switch (event.data){
         case "sumerian-open-packet":
           API.graphql(graphqlOperation(mutations.openPrivateRedPacket, 
             {
-              UserEmail: "214706257@qq.com", // TODO: need to be variable
+              UserEmail: self.state.user.attributes.email,
               ProductType: "1"
             })).then(luckyMoney => {
               console.log(luckyMoney)
               // TODO: Add a notice message to info user how much they earned.
             }).catch(err => {
               console.error(err)
-              // 有可能已经扫描过了
+              // TODO: add an error message
             })
           break;
         case "sumerian-close-packet":
@@ -62,12 +67,14 @@ class AR extends React.Component {
           break;
         case "sumerian-share-packet":
           API.graphql(graphqlOperation(mutations.shareRedPacket, {
-            UserEmail: "214706257@qq.com", // TODO: need to be variable
+            UserEmail: self.state.user.attributes.email, 
             ProductType: "1"
           })).then(luckyMoney => {
-            console.log(luckyMoney)
+            console.log("shared a lucky money")
+            // TODO: Add a notice message to info user how much they earned for extra
             window.location.href = "/";
           }).catch(err => {
+            // TODO: Add an error message to show
             console.error(err)
           })
           break;

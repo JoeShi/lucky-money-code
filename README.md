@@ -15,7 +15,7 @@
 - [x] ScannedFlag 字段在表 RedPacket 中应该是没有作用的
 - [x] 列出所有还未分享完的红包, 需要修改 SharedDoneFlag 字段，在定义中是 Boolean, 但实际存储到DDB 为 String
 - [x] Ranking Page 列出余额top 10 的用户，并且列出自己的金额
-- [ ] Sharing Page 
+- [x] Sharing Page
 - [ ] AR Page 捕获 `RedPacketShared`, `RedPacketOpened`, `RedPacketClosed` 事件， 并调用API
 - [ ] 红包的金额在 Schema 中是Float, 但实际上都是用 Int
 - [ ] 创建 API 的文档步骤
@@ -27,6 +27,8 @@
 **Low Priority**
 
 - [ ] GraphQL 定义中的字段改成小写，一般 GraphQL 的标准都是小写
+- [ ] Schema 里面定义的是 FriendUserEmail, 但 query 中返回的是friend, 容易混淆
+- [ ] 用 Cognito 里面的username字段可以不用查 Cognito, 应为在 lambda 的event 里面有 identity，里面包含这个字段
 - [ ] 红包的金额改成随机，增加随机性
 - [ ] 删除 Lambda 中的 user 部分代码
 - [ ] HasSharedRP 在业务中没有使用
