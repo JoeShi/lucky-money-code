@@ -17,6 +17,8 @@ The application has been published via Amplify Console.
 
 **High Priority**
 
+- [ ] 8th wall 上传图片的那个章节，提前准备好图片。8th
+- [ ] 准备一个二维码，确认所有进场参加workshop的人都能使用 8th wall.
 - [ ] [iOS device not authorized issue](https://www.8thwall.com/docs/web/#device-not-authorized)
 - [ ] iOS 不要使用无痕模式
 - [ ] Ranking page 个人余额不正确，分享之后没有刷新，应该是页面问题, 和 Google 翻译有关
