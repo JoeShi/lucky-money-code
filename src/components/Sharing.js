@@ -33,7 +33,7 @@ const useStyles = makeStyles({
 function RedPacketCard(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false);
-  const [luckyMoneyValue, setLuckyMoneyValue] = React.useState(false);
+  const [luckyMoneyValue, setLuckyMoneyValue] = React.useState('');
   const [luckyMoneyText, setLuckyMoneyText] = React.useState('')
   const luckyMoney = props
   

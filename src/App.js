@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import { withAuthenticator } from 'aws-amplify-react';
-import {Auth} from 'aws-amplify'
 import AR from './components/AR';
 import Ranking from './components/Ranking';
 import Sharing from './components/Sharing';
@@ -15,11 +13,6 @@ import  { Menu as MenuIcon,
   LocalDrink as LocalDrinkIcon,
   ExitToApp as ExitToAppIcon
  } from '@material-ui/icons'
-
-import Amplify from 'aws-amplify';
-import Aws_exports from './aws-exports';
-
-Amplify.configure(Aws_exports);
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,10 +30,6 @@ const exclusionArray = [
   '/ar',
   '/ar/',
 ]
-
-const signout = () => {
-  Auth.signOut()
-}
 
 const App=({location}) => {
   const classes = useStyles();
@@ -73,7 +62,7 @@ const App=({location}) => {
         <Divider />
         <ListItem>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-          <Link to="/" onClick={signout}>Sign out</Link>
+          <Link to="/">Sign out</Link>
         </ListItem>
       </List>
     </div>
@@ -128,4 +117,4 @@ const App=({location}) => {
   )
 };
 
-export default withAuthenticator(withRouter(App), { includeGreetings: false });
+export default withRouter(App);
