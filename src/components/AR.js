@@ -96,7 +96,7 @@ class AR extends React.Component {
             let toastText = "You share a lucky money"
             self.setState({toastText: toastText})
             showToast()
-            window.location.href = "/";
+            setTimeout(window.location.href = "/",3000);
           }).catch(err => {
             // TODO: Add an error message to show
             let toastText = "You have already shared it !"
