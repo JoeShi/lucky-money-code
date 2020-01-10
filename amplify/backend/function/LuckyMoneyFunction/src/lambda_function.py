@@ -16,9 +16,9 @@ advertisementMap={}
 USER_POOL_ID = os.environ['COGNITO_USER_POOL_ID']
 REGION_NAME = os.environ['REGION']
 
-TABLE_ADVERTISEMENT = os.environ['TABLE_ADVERTISEMENT']
-TABLE_USER_RANKING = os.environ['TABLE_USER_RANKING']
-TABLE_SHARED_RED_PACKET = os.environ['TABLE_SHARED_RED_PACKET']
+TABLE_ADVERTISEMENT = 'Advertisement' + os.environ['APPSYNC_ID'] + '-' + os.environ['env']
+TABLE_USER_RANKING = 'User' + os.environ['APPSYNC_ID'] + '-' + os.environ['env']
+TABLE_SHARED_RED_PACKET = 'SharedRedPacket' + os.environ['APPSYNC_ID'] + '-' + os.environ['env']
 
 cognitoClient = boto3.client('cognito-idp')
 dynamodbClient = boto3.resource("dynamodb", region_name=REGION_NAME)
