@@ -34,6 +34,7 @@ function RedPacketCard(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false);
   const [luckyMoneyValue, setLuckyMoneyValue] = React.useState(false);
+  const [luckyMoneyText, setLuckyMoneyText] = React.useState('')
   const luckyMoney = props
   
   const handleClose = () => {
@@ -54,10 +55,15 @@ function RedPacketCard(props) {
       console.log(details)
       const detail = details.redPackets.find(detail => detail.friend === currentUser.attributes.email)
       // set the display value
-      setLuckyMoneyValue(detail.money)
+      setLuckyMoneyValue('$ ' + detail.money/100)
+      setLuckyMoneyText("Lucky Money (Hongbao)\n Shared from "+ luckyMoney.owner)
       // set popup modal open
       setOpen(true)
     } catch (err) {
+      // Already opened
+      setLuckyMoneyText("You have already opened it")
+      setLuckyMoneyValue("")
+      setOpen(true)
       console.error(err)
     }    
   }
@@ -91,15 +97,15 @@ function RedPacketCard(props) {
       <DialogContent>
 
         <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
-          Lucky Money from 
-          
+          {/* Lucky Money from  */}
+          {luckyMoneyText}
         </DialogContentText>
-        <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
+        {/* <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
         {luckyMoney.owner}
-        </DialogContentText>
+        </DialogContentText> */}
         <DialogContentText style={{color:'#efbc3c',fontSize: '3rem'}} className={classes.modalText}>
           {/* Random Balance write in here */}
-          $ {luckyMoneyValue/100}
+          {luckyMoneyValue}
         </DialogContentText>
       </DialogContent>
       <DialogActions onClick={handleClose} style={{height: '120px'}}>
