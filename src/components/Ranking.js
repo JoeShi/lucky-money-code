@@ -1,124 +1,50 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardMedia, CardContent, Typography, Grid} from '@material-ui/core'
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+import { List, ListItem, ListItemText } from '@material-ui/core';
 
-const useStyles = makeStyles({
-  card: {
-    maxWidth: 345,
-    marginTop: 10
-  },
-  media: {
-    height: 140,
-  },
-  dialog: {
-    backgroundImage:`url(${'/images/redpacket.png'})`,
-    height: 320,
-    width: 247,
-    borderRadius: '21px'
-  },
-  modalText:{
-    textAlign: "center"
-  }
-});
-
-function RedPacketCard(props) {
-  const classes = useStyles()
-  const [open, setOpen] = React.useState(false);
-  const [luckyMoneyValue, setLuckyMoneyValue] = React.useState('$ 1.2');
-  const [luckyMoneyText, setLuckyMoneyText] = React.useState('Lucky Money Shared from q@amazon.com')
-  const luckyMoney = props
-  
-  const handleClose = () => {
-    setOpen(false);
-  };
-  
-  const openLuckyMoney = async () => {
-    setOpen(true)
-  }
-
-  return (
-    <div>
-    <Card className={classes.card}>
-      <CardActionArea onClick={() => openLuckyMoney()}>
-        <CardMedia
-          className={classes.media}
-          image="/images/red_envolope.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lucky Money (Hongbao)
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Shared from {luckyMoney.owner}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="responsive-dialog-title"
-      classes={{paper: classes.dialog}}
-    >
-      <DialogContent>
-
-        <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
-          {luckyMoneyText}
-        </DialogContentText>
-        <DialogContentText style={{color:'#efbc3c',fontSize: '3rem'}} className={classes.modalText}>
-          {luckyMoneyValue}
-        </DialogContentText>
-      </DialogContent>
-      <DialogActions onClick={handleClose} style={{height: '120px'}}>
-      </DialogActions>
-    </Dialog>
-    </div>
-    
-  )
-}
-
-class Sharing extends React.Component {
-
+class Ranking extends React.Component {
   constructor() {
     super()
     this.state = {
-      luckyMoneys: []
+      balance: 0,
+      users: []
     }
   }
 
   componentDidMount() {
-    const luckyMoneys = [
-        {
-            UserEmail: "a@amazon.com",
-            ProductType: "1"
-        },
-        {
-            UserEmail: "b@amazon.com",
-            ProductType: "1"
-        }
+    const topUsers = [
+      {
+        UserEmail: 'a@amazon.com',
+        Balance: 1090
+      },
+      {
+        UserEmail: 'b@amazon.com',
+        Balance: 890
+      },
+      {
+        UserEmail: 'c@amazon.com',
+        Balance: 450
+      }
     ]
-    this.setState({
-        luckyMoneys: luckyMoneys
-    })
+    this.setState({users: topUsers, balance: 4.50})
   }
-
   render() {
     return (
-      <Grid container justify={"center"}>
-        {this.state.luckyMoneys.map(luckyMoney => {
-          const keyId = `shared-lucky-money-id-${luckyMoney.UserEmail}`;
+      <div>
+      <h2>Your Balance: { this.state.balance }</h2>
+      <List dense>
+        {this.state.users.map(user => {
+          const labelId = `checkbox-list-secondary-label-${user.UserEmail}`;
           return (
-            <RedPacketCard key={keyId} owner={luckyMoney.UserEmail} adsId={luckyMoney.ProductType} />
-          )
+            <ListItem key={user.UserEmail} button>
+              <ListItemText id={labelId} primary={`${user.UserEmail}`} />
+              <ListItemText edge="end" primary={`$ ${user.Balance/100}`} />
+            </ListItem>
+          );
         })}
-      </Grid>
+      </List>
+    </div>
     )
   }
 }
 
-export default Sharing
+export default Ranking

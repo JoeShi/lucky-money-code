@@ -5,11 +5,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import { withAuthenticator } from 'aws-amplify-react';
-
-import * as queries from '../graphql/queries';
-import * as mutations from '../graphql/mutations';
-import {API, graphqlOperation, Auth} from 'aws-amplify';
 
 const useStyles = makeStyles({
   card: {
@@ -33,8 +28,8 @@ const useStyles = makeStyles({
 function RedPacketCard(props) {
   const classes = useStyles()
   const [open, setOpen] = React.useState(false);
-  const [luckyMoneyValue, setLuckyMoneyValue] = React.useState('');
-  const [luckyMoneyText, setLuckyMoneyText] = React.useState('')
+  const [luckyMoneyValue] = React.useState('$ 1.2');
+  const [luckyMoneyText] = React.useState('Lucky Money Shared from q@amazon.com')
   const luckyMoney = props
   
   const handleClose = () => {
@@ -42,30 +37,7 @@ function RedPacketCard(props) {
   };
   
   const openLuckyMoney = async () => {
-    // try catch here
-    const currentUser = await Auth.currentUserInfo()
-    try {
-      const shardRedPacketRes = await API.graphql(graphqlOperation(mutations.openSharedRedPacket, {
-        ProductType: props.adsId, 
-        UserEmail: props.owner, 
-        FriendUserEmail: currentUser.attributes.email
-      }))
-      console.log(shardRedPacketRes.data.openSharedRedPacket)
-      const details = JSON.parse(shardRedPacketRes.data.openSharedRedPacket.RPShareDetails)
-      console.log(details)
-      const detail = details.redPackets.find(detail => detail.friend === currentUser.attributes.email)
-      // set the display value
-      setLuckyMoneyValue('$ ' + detail.money/100)
-      setLuckyMoneyText("Lucky Money (Hongbao)\n Shared from "+ luckyMoney.owner)
-      // set popup modal open
-      setOpen(true)
-    } catch (err) {
-      // Already opened
-      setLuckyMoneyText("You have already opened it")
-      setLuckyMoneyValue("")
-      setOpen(true)
-      console.error(err)
-    }    
+    setOpen(true)
   }
 
   return (
@@ -83,7 +55,6 @@ function RedPacketCard(props) {
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Shared from {luckyMoney.owner}
-
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -97,14 +68,9 @@ function RedPacketCard(props) {
       <DialogContent>
 
         <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
-          {/* Lucky Money from  */}
           {luckyMoneyText}
         </DialogContentText>
-        {/* <DialogContentText style={{color:'#efbc3c'}} className={classes.modalText}>
-        {luckyMoney.owner}
-        </DialogContentText> */}
         <DialogContentText style={{color:'#efbc3c',fontSize: '3rem'}} className={classes.modalText}>
-          {/* Random Balance write in here */}
           {luckyMoneyValue}
         </DialogContentText>
       </DialogContent>
@@ -126,22 +92,19 @@ class Sharing extends React.Component {
   }
 
   componentDidMount() {
-    this.init().then()
-  }
-
-  async init() {
-    const luckyMoneysRes =  await API.graphql(graphqlOperation(queries.redPacketsByProductType, 
-      { 
-        ProductType: "1", 
-        filter: { 
-          SharedDoneFlag: { eq: false }
+    const luckyMoneys = [
+        {
+            UserEmail: "a@amazon.com",
+            ProductType: "1"
+        },
+        {
+            UserEmail: "b@amazon.com",
+            ProductType: "1"
         }
-      }))
-
-    const luckyMoneys = luckyMoneysRes.data.redPacketsByProductType.items
-    if (luckyMoneys) {
-      this.setState({luckyMoneys: luckyMoneys})
-    }
+    ]
+    this.setState({
+        luckyMoneys: luckyMoneys
+    })
   }
 
   render() {
@@ -158,4 +121,4 @@ class Sharing extends React.Component {
   }
 }
 
-export default withAuthenticator(Sharing)
+export default Sharing
